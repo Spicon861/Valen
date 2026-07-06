@@ -266,6 +266,8 @@
   </div>
 </div>
 
+<audio id="cancion" src="cancion.mp3" preload="auto"></audio>
+
 <script>
   const btnNo = document.getElementById('btn-no');
   const btnSi = document.getElementById('btn-si');
@@ -324,6 +326,13 @@
     resultado.classList.add('activo');
     document.body.classList.remove('no-libre');
     lanzarConfeti();
+
+    const cancion = document.getElementById('cancion');
+    cancion.currentTime = 0;
+    cancion.play().catch(() => {
+      // Si el navegador bloquea el autoplay, no pasa nada grave, solo no suena.
+      console.log('El navegador bloqueó la reproducción automática.');
+    });
   });
 
   function lanzarConfeti(){
